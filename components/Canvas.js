@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { WebView, View } from 'react-native';
-import htmlCanvas from '../htmlTemplates/htmlCanvas';
-import scriptPaticles from '../scriptsTemplates/scriptParticles';
-import scriptCanvas from '../scriptsTemplates/scriptCanvas';
+import htmlCanvas from '../templates/html/htmlCanvas';
+import scriptPaticles from '../templates/scripts/scriptParticles';
+import scriptCanvas from '../templates/scripts/scriptCanvas';
 
 class Canvas extends Component {
   runJavascript() {
