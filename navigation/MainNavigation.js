@@ -1,9 +1,9 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 import Picture from '../views/Picture';
 import Settings from '../views/Settings';
 import Diaporama from '../views/Diaporama';
 
-const mainStackNavigator = createStackNavigator({
+const mainNavigator = createDrawerNavigator({
   Picture: {
     screen: Picture,
     navigationOptions: {
@@ -24,4 +24,4 @@ const mainStackNavigator = createStackNavigator({
   }
 });
 
-export default createAppContainer(mainStackNavigator)
+export default createAppContainer(mainNavigator)

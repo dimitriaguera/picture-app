@@ -6,11 +6,7 @@ export default class Picture extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Canvas style={styles.canvas} />
-        <View style={styles.text}>
-          <Text>Open up App.js to start working on your app!</Text>
-          <Text>ok!</Text>
-        </View>
+        <Canvas />
       </View>
     );
   }
@@ -18,13 +14,6 @@ export default class Picture extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    flex: 1
   },
-  canvas: {
-    flex: 5,
-  },
-  text: {
-    flex: 1,
-  }
 });

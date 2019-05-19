@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, WebView } from 'react-native';
-import MainNavigation from './Navigation/Main';
+import MainNavigation from './navigation/MainNavigation';
 
 export default class App extends React.Component {
   render() {

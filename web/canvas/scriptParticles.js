@@ -1,6 +1,3 @@
-export default scriptParticles = `
-
-
 window.slideParticles = function (window, document, undefined) {
 
   var fn;
@@ -362,12 +359,8 @@ window.slideParticles = function (window, document, undefined) {
     // Create and return canvas element. If no size specified, take instance's settings size.
     getCanvas: function (size) {
       var canvas = document.createElement('canvas');
-      var s = fn.getTargetViewport(this.settings.targetElement);
-
-      console.log('size: ', s);
-
-      canvas.height = s.h ? s.h : this.settings.height;
-      canvas.width = s.w ? s.w : this.settings.width;
+      canvas.height = this.settings.height;
+      canvas.width = this.settings.width;
 
       return canvas;
     },
@@ -714,8 +707,8 @@ window.slideParticles = function (window, document, undefined) {
     // Return viewport size.
     getViewport: function () {
       return {
-        w: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-        h: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+        w: document.body.clientWidth,
+        h: document.body.clientHeight
       };
     },
 
@@ -1032,4 +1025,3 @@ slideParticles.registerTransition({
             }, d);
       }
 });
-`
