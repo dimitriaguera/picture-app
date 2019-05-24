@@ -1,30 +1,33 @@
 import React, { Component } from 'react';
 import { StyleSheet, Button, View } from 'react-native';
+import { connect } from 'react-redux'
+import { playCanvas, stopCanvas } from '../store/reducers/canvasReducer';
 
 class Tools extends Component {
-    onPressStop() {
-        alert('Stop');
+    constructor(props) {
+        super(props);
+        this.togglePlay = this.togglePlay.bind(this);
+    }
+
+    togglePlay() {
+        const { play, onPlay, onStop } = this.props;
+        if( !play ) {
+            onPlay();
+        } else {
+            onStop();
+        }
     }
 
     render() {
+        const { play } = this.props;
         return (
         <View style={styles.container}>
-            <View style={styles.button}>
                 <Button
-                    onPress={this.onPressStop}
-                    title="Stop"
-                    color="#841584"
-                    accessibilityLabel="Stop particles loop."
+                    onPress={this.togglePlay}
+                    title={play ? 'Stop' :'Play'}
+                    color={styles.element.color}
+                    accessibilityLabel={play ? 'Stop particles loop.' : 'Start particles'}
                 />
-            </View>
-            <View style={styles.button}>
-                <Button
-                    onPress={this.onPressStop}
-                    title="Start"
-                    color="#841584"
-                    accessibilityLabel="Start particles loop."
-                />
-            </View>
         </View>
         );
     }
@@ -39,7 +42,23 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     padding: 10,
+  },
+  element: {
+    color: '#841584'
   }
 });
 
-export default Tools
+const mapStateToProps = (state) => {
+  return {
+      play: state.canvas.play,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onPlay: () => { dispatch(playCanvas()) },
+    onStop: () => { dispatch(stopCanvas()) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tools)

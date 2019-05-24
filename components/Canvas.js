@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, WebView, View, Button } from 'react-native';
+import { StyleSheet, WebView, View } from 'react-native';
+import { connect } from 'react-redux'
 
 class Canvas extends Component {
   constructor(props){
@@ -14,6 +15,22 @@ class Canvas extends Component {
     this.sendStop = this.sendStop.bind(this);
     this.sendReady = this.sendReady.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const { play } = this.props;
+    if(play !== nextProps.play) {
+      if(nextProps.play) {
+        this.sendStart();
+      } else {
+        this.sendStop();
+      }
+    }
+    return false;
+  }
+
+  componentDidUpdate(prevProps) {
+
   }
 
   handleMessage(e) {
@@ -69,24 +86,6 @@ class Canvas extends Component {
             source={require('../web/canvas/canvas.html')}
           />
       </View>
-      <View style={styles.tools}>
-        <View style={styles.button}>
-            <Button
-                onPress={this.sendStop}
-                title="Stop"
-                color="#841584"
-                accessibilityLabel="Stop particles loop."
-            />
-        </View>
-        <View style={styles.button}>
-            <Button
-                onPress={this.sendStart}
-                title="Start"
-                color="#841584"
-                accessibilityLabel="Start particles loop."
-            />
-        </View>
-      </View>
     </View>
     );
   }
@@ -110,4 +109,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Canvas;
+const mapStateToProps = (state) => {
+  return {
+      play: state.canvas.play,
+  }
+}
+
+export default connect(mapStateToProps)(Canvas);

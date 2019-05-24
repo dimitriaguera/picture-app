@@ -306,8 +306,8 @@ window.slideParticles = function (window, document, undefined) {
     this.mode = this.settings.initialMode;
     this.liberation = false;
     this.activeIndex = null;
-    this.canvas = this.getCanvas();
-    this.context = this.getContext2D(this.canvas);
+    this.canvas = null;
+    this.context = null;
   }
 
   DiapPart.prototype = {
@@ -317,6 +317,12 @@ window.slideParticles = function (window, document, undefined) {
 
       // Store settings.
       fn.simpleExtend(this.settings, options);
+
+      // Create canvas
+      this.canvas = this.getCanvas();
+
+      // Create context
+      this.context = this.getContext2D(this.canvas);
 
       // Inject canvas on DOM.
       fn.append(this.settings.targetElement, this.canvas);

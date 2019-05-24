@@ -9,6 +9,8 @@ window.document.addEventListener('DOMContentLoaded', function(e) {
   messager = window.messagerBuilder();
 
   messager.on('ready', function(params){
+    console.log('width: ', params.width);
+    console.log('height: ', params.height);
     dp = slideParticles.getInstance({
       stop: true,
       mass: 10,
