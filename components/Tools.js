@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Button, View } from 'react-native';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { playCanvas, stopCanvas } from '../store/reducers/canvasReducer';
 
 class Tools extends Component {
@@ -11,7 +11,7 @@ class Tools extends Component {
 
     togglePlay() {
         const { play, onPlay, onStop } = this.props;
-        if( !play ) {
+        if (!play) {
             onPlay();
         } else {
             onStop();
@@ -21,44 +21,53 @@ class Tools extends Component {
     render() {
         const { play } = this.props;
         return (
-        <View style={styles.container}>
+            <View style={styles.container}>
                 <Button
                     onPress={this.togglePlay}
-                    title={play ? 'Stop' :'Play'}
+                    title={play ? 'Stop' : 'Play'}
                     color={styles.element.color}
-                    accessibilityLabel={play ? 'Stop particles loop.' : 'Start particles'}
+                    accessibilityLabel={
+                        play ? 'Stop particles loop.' : 'Start particles'
+                    }
                 />
-        </View>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 0,
-    flexDirection: 'row',
-    backgroundColor: 'red',
-  },
-  button: {
-    flex: 1,
-    padding: 10,
-  },
-  element: {
-    color: '#841584'
-  }
+    container: {
+        flex: 0,
+        flexDirection: 'row',
+        backgroundColor: 'red'
+    },
+    button: {
+        flex: 1,
+        padding: 10
+    },
+    element: {
+        color: '#841584'
+    }
 });
 
-const mapStateToProps = (state) => {
-  return {
-      play: state.canvas.play,
-  }
-}
+const mapStateToProps = state => {
+    return {
+        play: state.canvas.play
+    };
+};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onPlay: () => { dispatch(playCanvas()) },
-    onStop: () => { dispatch(stopCanvas()) }
-  }
-}
+const mapDispatchToProps = dispatch => {
+    return {
+        onPlay: () => {
+            dispatch(playCanvas());
+        },
+        onStop: () => {
+            dispatch(stopCanvas());
+        }
+    };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tools)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Tools);

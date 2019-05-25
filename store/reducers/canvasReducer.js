@@ -3,29 +3,29 @@ const STOP_CANVAS = 'STOP_CANVAS';
 
 export const playCanvas = function() {
     return {
-        type: PLAY_CANVAS,
-    }
-}
+        type: PLAY_CANVAS
+    };
+};
 
 export const stopCanvas = function() {
     return {
-        type: STOP_CANVAS,
-    }
-}
+        type: STOP_CANVAS
+    };
+};
 
 const initialState = {
-    play: false,
-}
+    play: false
+};
 
 function canvasReducer(state = initialState, action) {
     let nextState;
     switch (action.type) {
-        case PLAY_CANVAS :
-            nextState = {...state, play: true}
+        case PLAY_CANVAS:
+            nextState = { ...state, play: true };
             break;
 
-        case STOP_CANVAS :
-            nextState = {...state, play: false}
+        case STOP_CANVAS:
+            nextState = { ...state, play: false };
             break;
 
         default:

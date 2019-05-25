@@ -1,8 +1,4 @@
-
-
-const initialState = {
-
-}
+const initialState = {};
 
 function settingsReducer(state = initialState, action) {
     let nextState;
